@@ -1,8 +1,8 @@
 public class Main {
 
-    static long factorial(int n) {
+    static int factorial(int n) {
 
-        long res = 1;
+        int res = 1;
 
         for(int i = 1; i <= n; ++i) {
             res = res * i;
@@ -18,13 +18,14 @@ public class Main {
         for(int i = 2; i < num; ++i) {
             if(num % i == 0) {
                 is_p = false;
+                break;
             }
         }
 
         return is_p;
     }
 
-    static long pow(long a, int b) {
+    static int pow(int a, int b) {
         if (b == 0)
             return 1;
 
@@ -39,15 +40,15 @@ public class Main {
 
     static int[] compute_pp(int num) {
 
-        int[] exp_arr = new int[num];
+        int[] exp_arr = new int[num + 1];
 
-        for(int i = 0; i < num; ++i) {
+        for(int i = 0; i < num + 1; ++i) {
             exp_arr[i] = 0;
         }
 
         for(int i = 2; i <= num; ++i) {
             if(is_prime(i)) {
-                long val = pow(i, 0);
+                int val = pow(i, 0);
                 int exp = 0;
                 while(val <= num) {
                     val = pow(i, exp);
@@ -70,7 +71,7 @@ public class Main {
             }
         }
 
-        long res = 1;
+        int res = 1;
         for(int i = 2; i < num; ++i) {
             if(exp_arr[i] != 0) {
                 res = res * pow(i, exp_arr[i]);
@@ -85,13 +86,13 @@ public class Main {
     public static void main(String[] args) {
 
         // Number to factorize
-        long num = factorial(6);
+        int num = factorial(6);
 
         // Compute prime factor
-        int[] exp_arr = compute_pp((int) num);
+        int[] exp_arr = compute_pp(num);
 
         // Print prime factor
-        print_pp(exp_arr, (int) num);
+        print_pp(exp_arr, num);
 
     }
 }
